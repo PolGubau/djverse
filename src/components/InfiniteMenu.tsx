@@ -60,8 +60,10 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 			{activeItem && (
 				<>
 					<h2
-						className={`absolute font-extrabold text-white text-6xl left-8 top-1/2 transform -translate-y-1/2 transition-opacity duration-500 ${
-							isMoving ? "opacity-0" : "opacity-100"
+						className={`absolute font-extrabold text-white text-6xl left-8 top-1/2 transform -translate-y-1/2 transition-all duration-500 ${
+							isMoving
+								? "opacity-0 pointer-events-none -translate-x-4 "
+								: "opacity-100"
 						}`}
 					>
 						{activeItem.title}
@@ -69,7 +71,9 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 
 					<p
 						className={`absolute max-w-[12ch] text-2xl text-gray-200 right-8 top-1/2 transform -translate-y-1/2 transition-all duration-500 ${
-							isMoving ? "opacity-0 translate-x-4" : "opacity-100"
+							isMoving
+								? "opacity-0 translate-x-4 pointer-events-none"
+								: "opacity-100"
 						}`}
 					>
 						{activeItem.description}
