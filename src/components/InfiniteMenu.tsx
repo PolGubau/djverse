@@ -60,13 +60,13 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 			{activeItem && (
 				<>
 					<h2
-						className={`absolute font-bold text-neutral-50 text-6xl
+						className={`absolute font-bold text-neutral-50 
 							
 							// phone
-							max-2xl:translate-x-1/2 right-1/2 top-36 md:top-20
+							max-2xl:translate-x-1/2 right-1/2 top-36 md:top-20 max-2xl:text-center max-2xl:text-3xl
 
 							// pc
-							2xl:left-20 2xl:top-1/2 2xl:-translate-y-1/2 
+							2xl:left-20 2xl:top-1/2 2xl:-translate-y-1/2 2xl:text-6xl
 							
 							transition-all duration-500 transform ${
 								isMoving
@@ -78,13 +78,13 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 					</h2>
 
 					<p
-						className={`absolute font-bold text-neutral-200 text-2xl
+						className={`absolute font-bold text-neutral-200 
 							
 							// phone
-							max-2xl:translate-x-1/2 right-1/2 bottom-36 md:bottom-20
+							max-2xl:translate-x-1/2 right-1/2 bottom-36 md:bottom-20 max-2xl:text-center max-2xl:text-xl
 
 							// pc
-							2xl:right-20 2xl:bottom-1/2 2xl:-translate-y-1/2 2xl:max-w-[16ch]
+							2xl:right-20 2xl:bottom-1/2 2xl:-translate-y-1/2 2xl:max-w-[16ch] 2xl:text-2xl
 							
 							transition-all duration-500 transform ${
 								isMoving
