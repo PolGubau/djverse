@@ -14,6 +14,7 @@ export interface MenuItem {
 	image: string;
 	title: string;
 	date: Date;
+	locale: Intl.LocalesArgument; // Usa el tipo más preciso de localización
 }
 
 export type ActiveItemCallback = (index: number) => void;

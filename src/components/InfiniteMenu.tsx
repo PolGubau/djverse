@@ -60,23 +60,40 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 			{activeItem && (
 				<>
 					<h2
-						className={`absolute font-bold text-white text-6xl left-8 md:left-20 top-1/2 transform -translate-y-1/2 transition-all duration-500 ${
-							isMoving
-								? "opacity-0 pointer-events-none -translate-x-4 "
-								: "opacity-100"
-						}`}
+						className={`absolute font-bold text-neutral-50 text-6xl
+							
+							// phone
+							max-2xl:translate-x-1/2 right-1/2 top-36 md:top-20
+
+							// pc
+							2xl:left-20 2xl:top-1/2 2xl:-translate-y-1/2 
+							
+							transition-all duration-500 transform ${
+								isMoving
+									? "opacity-0 pointer-events-none -translate-y-10 2xl:-translate-x-4"
+									: "opacity-100"
+							}`}
 					>
 						{activeItem.title}
 					</h2>
 
 					<p
-						className={`absolute max-w-[12ch] text-2xl text-gray-200 right-8 md:right-20 top-1/2 transform -translate-y-1/2 transition-all duration-500 ${
-							isMoving
-								? "opacity-0 translate-x-4 pointer-events-none"
-								: "opacity-100"
-						}`}
+						className={`absolute font-bold text-neutral-200 text-2xl
+							
+							// phone
+							max-2xl:translate-x-1/2 right-1/2 bottom-36 md:bottom-20
+
+							// pc
+							2xl:right-20 2xl:bottom-1/2 2xl:-translate-y-1/2 2xl:max-w-[16ch]
+							
+							transition-all duration-500 transform ${
+								isMoving
+									? "opacity-0 pointer-events-none translate-y-10 2xl:translate-x-4"
+									: "opacity-100"
+							}`}
 					>
-						{activeItem.date.toLocaleDateString("es-ES", {
+						{activeItem.date.toLocaleDateString(activeItem.locale, {
+							weekday: "long",
 							year: "numeric",
 							month: "long",
 							day: "numeric",
