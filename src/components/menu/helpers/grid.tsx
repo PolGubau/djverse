@@ -200,7 +200,7 @@ export class InfiniteGridMenu {
 		};
 
 		// Geometry
-		this.discGeo = new DiscGeometry(56, 1);
+		this.discGeo = new DiscGeometry(56, 1); // rounded, radius
 		this.discBuffers = this.discGeo.data;
 		this.discVAO = makeVertexArray(
 			gl,
@@ -255,9 +255,9 @@ export class InfiniteGridMenu {
 			gl.CLAMP_TO_EDGE,
 		);
 
-		const itemCount = Math.max(1, this.items.length);
-		this.atlasSize = Math.ceil(Math.sqrt(itemCount));
-		const cellSize = 512;
+		const itemCount = Math.max(1, this.items.length); // ensure at least 1 item
+		this.atlasSize = Math.ceil(Math.sqrt(itemCount)); // square atlas
+		const cellSize = 512; // 512x512 images
 		const canvas = document.createElement("canvas");
 		// biome-ignore lint/style/noNonNullAssertion: <explanation>
 		const ctx = canvas.getContext("2d")!;
@@ -279,19 +279,19 @@ export class InfiniteGridMenu {
 				const x = (i % this.atlasSize) * cellSize;
 				const y = Math.floor(i / this.atlasSize) * cellSize;
 
-				ctx.drawImage(img, x, y, cellSize, cellSize);
+				ctx.drawImage(img, x, y, cellSize, cellSize); // draw image to atlas cell
 			});
 
 			gl.bindTexture(gl.TEXTURE_2D, this.tex);
 			gl.texImage2D(
-				gl.TEXTURE_2D,
-				0,
-				gl.RGBA,
-				gl.RGBA,
-				gl.UNSIGNED_BYTE,
-				canvas,
+				gl.TEXTURE_2D, // target
+				0, // mip level
+				gl.RGBA, // internal format
+				gl.RGBA, // format
+				gl.UNSIGNED_BYTE, // type
+				canvas, // data
 			);
-			gl.generateMipmap(gl.TEXTURE_2D);
+			gl.generateMipmap(gl.TEXTURE_2D); // generate mipmaps
 		});
 	}
 
@@ -331,8 +331,8 @@ export class InfiniteGridMenu {
 			const loc = this.discLocations.aInstanceMatrix + j;
 			gl.enableVertexAttribArray(loc);
 			gl.vertexAttribPointer(
-				loc,
-				4,
+				loc, // location
+				4, // size
 				gl.FLOAT,
 				false,
 				bytesPerMatrix,
@@ -351,8 +351,8 @@ export class InfiniteGridMenu {
 		const positions = this.instancePositions.map((p) =>
 			vec3.transformQuat(vec3.create(), p, this.control.orientation),
 		);
-		const scale = 0.25;
-		const SCALE_INTENSITY = 0.6;
+		const scale = 0.25; // scale of the discs
+		const SCALE_INTENSITY = 0.6; // intensity of the scale effect
 
 		positions.forEach((p, ndx) => {
 			const s =
