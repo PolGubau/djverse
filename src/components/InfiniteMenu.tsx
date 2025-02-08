@@ -43,12 +43,12 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 		return () => window.removeEventListener("resize", handleResize);
 	}, [items]);
 
-	const handleButtonClick = () => {
-		if (!activeItem?.link) return;
-		activeItem.link.startsWith("http")
-			? window.open(activeItem.link, "_blank")
-			: console.log("Internal route:", activeItem.link);
-	};
+	// const handleButtonClick = () => {
+	// 	if (!activeItem?.link) return;
+	// 	activeItem.link.startsWith("http")
+	// 		? window.open(activeItem.link, "_blank")
+	// 		: console.log("Internal route:", activeItem.link);
+	// };
 
 	return (
 		<div className="relative w-full h-full">
@@ -76,10 +76,14 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 								: "opacity-100"
 						}`}
 					>
-						{activeItem.description}
+						{activeItem.date.toLocaleDateString("es-ES", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})}
 					</p>
 
-					<button
+					{/* <button
 						type="button"
 						onClick={handleButtonClick}
 						className={`absolute left-1/2 bottom-16 w-16 h-16 flex items-center justify-center bg-sky-500 border-2 border-black text-white rounded-full shadow-lg transform transition-all duration-500 hover:scale-110 active:scale-95 ${
@@ -87,7 +91,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
 						}`}
 					>
 						<span className="text-2xl">&#x2197;</span>
-					</button>
+					</button> */}
 				</>
 			)}
 		</div>

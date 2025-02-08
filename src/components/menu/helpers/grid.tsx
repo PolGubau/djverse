@@ -12,9 +12,8 @@ import { discFragShaderSource, discVertShaderSource } from "./shaders";
 
 export interface MenuItem {
 	image: string;
-	link: string;
 	title: string;
-	description: string;
+	date: Date;
 }
 
 export type ActiveItemCallback = (index: number) => void;
@@ -279,7 +278,18 @@ export class InfiniteGridMenu {
 				const x = (i % this.atlasSize) * cellSize;
 				const y = Math.floor(i / this.atlasSize) * cellSize;
 
-				ctx.drawImage(img, x, y, cellSize, cellSize); // draw image to atlas cell
+				// Dibuja la imagen cubriendo toda la celda, sin importar el recorte
+				ctx.drawImage(
+					img,
+					0,
+					0,
+					img.width,
+					img.height,
+					x,
+					y,
+					cellSize,
+					cellSize,
+				);
 			});
 
 			gl.bindTexture(gl.TEXTURE_2D, this.tex);
