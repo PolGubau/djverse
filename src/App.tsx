@@ -13,6 +13,11 @@ const items: MenuItem[] = [
 		date: new Date("2024-03-10"),
 	},
 	{
+		image: "/fotos/freiburg.webp",
+		title: "Freiburg",
+		date: new Date("2024-10-20"),
+	},
+	{
 		image: "/fotos/kalmar.webp",
 		title: "Kalmar",
 		date: new Date("2023-01-23"),
